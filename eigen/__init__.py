@@ -15,6 +15,11 @@ def get_include():
     return os.path.join(package)
 
 
+def compile_args():
+    """Return a set of recommended extra compile args for Cython"""
+    return ['-O3', '-march=native', '-std=c++11']
+
+
 # ----------------------------------------------------------------------------
 # Version
 # ----------------------------------------------------------------------------

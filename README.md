@@ -27,7 +27,7 @@ from eigen cimport Scalar, VectorMap as Vector
 
 cdef Scalar sum(Scalar[:] x):
     """Sum the elements of a contiguous vector with generic scalar type"""
-    cdef Vector[Scalar] xm = Vector(&x[0], x.size)
+    cdef Vector[Scalar] xm = Vector[Scalar](&x[0], x.size)
     return xm.sum()
 ```
 
@@ -41,7 +41,8 @@ Extension('...',
     include_dirs = [
         numpy.get_include(),
         eigen.get_include()
-    ]
+    ],
+    extra_compile_args = eigen.compile_args()
     ...
 )
 ```
