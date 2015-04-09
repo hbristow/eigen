@@ -1,7 +1,7 @@
 Eigen Python
 ============
 
-A slim Python/Cython to the Eigen C++ template library
+A slim Python/Cython interface to the Eigen C++ template library
 
 Eigen Python exports a number of Eigen types (namely Matrix and its derivatives)
 along with some of the core functionality provided by Eigen. This package is
@@ -21,12 +21,12 @@ Usage
 
 In your Cython wrappers:
 
-    from eigen cimport Map, Scalar
+    from eigen cimport Scalar, VectorMap as Vector
     ...
 
     cdef Scalar sum(Scalar[:] x):
-        """Sum the elements of a contiguous array"""
-        cdef Map[Scalar] xm = Map(&x[0], x.size)
+        """Sum the elements of a contiguous vector with generic scalar type"""
+        cdef Vector[Scalar] xm = Vector(&x[0], x.size)
         return xm.sum()
 
 In your setup.py:
