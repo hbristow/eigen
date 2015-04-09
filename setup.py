@@ -1,5 +1,4 @@
 import os
-from Cython.Build import cythonize
 from setuptools import setup, Extension
 
 # ----------------------------------------------------------------------------
@@ -9,15 +8,6 @@ eigen = []
 for root, dirnames, filenames in os.walk('eigen', followlinks=True):
     root = root.lstrip(os.path.join('eigen',''))
     eigen.extend((os.path.join(root, filename) for filename in filenames))
-
-extensions = [
-    Extension('test',
-        sources = ['tests/test.pyx'],
-        include_dirs = ['eigen'],
-        extra_compile_args = ['-std=c++11'],
-        language = 'c++'
-    )
-]
 
 
 # ----------------------------------------------------------------------------
@@ -37,8 +27,7 @@ setup(name = 'Eigen',
         'eigen': eigen
     },
     install_requires = [
-        'cython'
+        'cython >= 0.20'
     ],
-    ext_modules = cythonize(extensions),
     test_suite='tests',
     zip_safe=False)
