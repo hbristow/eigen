@@ -21,23 +21,27 @@ Usage
 
 In your Cython wrappers:
 
-    from eigen cimport Scalar, VectorMap as Vector
-    ...
+```python
+from eigen cimport Scalar, VectorMap as Vector
+...
 
-    cdef Scalar sum(Scalar[:] x):
-        """Sum the elements of a contiguous vector with generic scalar type"""
-        cdef Vector[Scalar] xm = Vector(&x[0], x.size)
-        return xm.sum()
+cdef Scalar sum(Scalar[:] x):
+    """Sum the elements of a contiguous vector with generic scalar type"""
+    cdef Vector[Scalar] xm = Vector(&x[0], x.size)
+    return xm.sum()
+```
 
 In your setup.py:
 
-    import numpy
-    import eigen
+```python
+import numpy
+import eigen
 
-    Extension('...',
-        include_dirs = [
-            numpy.get_include(),
-            eigen.get_include()
-        ]
-        ...
-    )
+Extension('...',
+    include_dirs = [
+        numpy.get_include(),
+        eigen.get_include()
+    ]
+    ...
+)
+```
