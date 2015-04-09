@@ -33,6 +33,7 @@ cdef extern from 'Interface.hpp' nogil:
         Matrix col(Index col)
         Matrix row(Index row)
         Scalar& at 'operator()'(Index m, Index n)
+        Matrix& copy 'operator='(Matrix& other)
         # operators and arithmetic
         Scalar sum()
         Scalar prod()
