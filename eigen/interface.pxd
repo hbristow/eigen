@@ -2,7 +2,7 @@
 
 This interface exposes Dense Eigen types through the Interface.hpp
 shim. The inheritance hierarchy defined is not strictly correct,
-but Cython does not aggressively check its correctness, it
+but since Cython does not aggressively check its correctness, it
 makes Cython inheritance much simpler.
 """
 
@@ -32,6 +32,7 @@ cdef extern from 'Interface.hpp' nogil:
         Index cols()
         Matrix col(Index col)
         Matrix row(Index row)
+        Scalar& at 'operator()'(Index m, Index n)
         # operators and arithmetic
         Scalar sum()
         Scalar prod()
@@ -45,6 +46,7 @@ cdef extern from 'Interface.hpp' nogil:
     cdef cppclass Vector[Scalar](Matrix):
         Vector()
         Vector(Index size)
+        Scalar& at 'operator()'(Index m)
 
     # storage types with data mapped from a foreign array
     cdef cppclass MatrixMap[Scalar](Matrix):
