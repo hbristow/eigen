@@ -27,7 +27,8 @@ setup(name = 'Eigen',
         'eigen': eigen
     },
     install_requires = [
-        'cython >= 0.22'
+        'cython >= 0.22',
+        'numpy >= 1.9'
     ],
     test_suite='tests',
     zip_safe=False)
